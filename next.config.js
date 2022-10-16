@@ -7,7 +7,7 @@ const nextConfig = {
       {
         source: "/",
         destination: "/register",
-        permanent: true,
+        permanent: false,
       },
     ];
   }

@@ -2,6 +2,7 @@ import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import dbConnect from "../../../lib/dbConnect";
 import userModel from "../../../lib/userModel";
+import { createUser, updateUser } from "../../../lib/createUser";
 
 export default async function handler(req, res) {
   if (req.method !== "GET")
@@ -31,7 +32,14 @@ export default async function handler(req, res) {
   const finalUsername = username.toLowerCase();
   const usersDB = await userModel.find();
 
-  if (usersDB.find((x) => x.username === finalUsername && x.email !== session.user.email)) {
+  if (
+    usersDB.find(
+      (x) =>
+        x.username === finalUsername &&
+        !!x.email &&
+        x.email !== session.user.email
+    )
+  ) {
     return res.redirect(
       getCallbackURL({
         error: {
@@ -46,15 +54,16 @@ export default async function handler(req, res) {
   const user = await usersDB.find((x) => x.email === session.user.email);
 
   if (user) {
-    await userModel.updateOne(
-      { email: session.user.email },
-      { username: finalUsername }
-    );
+    await updateUser({
+      headers: req.headers,
+      session,
+      finalUsername,
+    });
   } else {
-    await userModel.create({
-      username: finalUsername,
-      name: session.user.name,
-      email: session.user.email,
+    await createUser({
+      headers: req.headers,
+      session,
+      finalUsername,
     });
   }
 

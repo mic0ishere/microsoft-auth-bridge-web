@@ -58,6 +58,7 @@ export default async function handler(req, res) {
       headers: req.headers,
       session,
       finalUsername,
+      user,
     });
   } else {
     await createUser({

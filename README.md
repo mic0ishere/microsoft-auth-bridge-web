@@ -2,9 +2,9 @@
 
 ## What is this?
 
-This application was developed for a school minecraft server, as a way to make sure only real students can access the server. As everyone had his own school Microsoft email account, it was an obvious choice to make it so everyone can register using Microsoft's OAuth.
+This application was developed for a school minecraft server, as a way to make sure only real students can access the server. As everyone had his own school email account, it was an obvious choice to make it so everyone can register using Microsoft's OAuth. 
 
-There's also a plugin for it, check it out at [github.com/mic0ishere/microsoft-auth-bridge-plugin](https://github.com/mic0ishere/microsoft-auth-bridge-plugin).
+This repo is dedicated to the web portion of the project. There's also a plugin for it, check it out at [github.com/mic0ishere/microsoft-auth-bridge-plugin](https://github.com/mic0ishere/microsoft-auth-bridge-plugin).
 
 ## How do I set it up?
 
